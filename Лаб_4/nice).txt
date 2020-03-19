@@ -1,0 +1,3 @@
+describe customer;
+INSERT INTO customer VALUES (1, 'Viktor', 'Kachm,aryk', '0639660485', NULL, NULL, NULL, NULL, NULL, 'vity_', 'Vitya');
+select * from customer;
