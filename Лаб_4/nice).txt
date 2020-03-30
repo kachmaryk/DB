@@ -55,4 +55,4 @@ __________________________________
 UPDATE customer SET password = 'NewAndrew' WHERE login= 'andrew_';
 ___________________________________________________________________
 
-DELETE FROM pharmacy WHERE street = 'Zelena';
+DELETE FROM pharmacy WHERE street = 'Lypneva' or street = 'Lyubinska';

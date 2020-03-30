@@ -8,7 +8,7 @@ CREATE TABLE `pharmacy` (
 	`email` varchar(50) NOT NULL,
 	`street` varchar(50) NOT NULL,
 	`city` varchar(50) NOT NULL,
-	`state` varchar(50) NOT NULL,
+	`state` varchar(50),
 	PRIMARY KEY (`pharmacy_id`)
 );
 

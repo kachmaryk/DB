@@ -1,0 +1,46 @@
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\PharmacyTable.csv"
+INTO TABLE pharmacy
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+select * from pharmacy;
+
+1_______________________________________________________________________
+CREATE TABLE pharmacy1 
+AS SELECT pharmacy_id, pharmacy_name, phone, email, street, city, state 
+FROM pharmacy WHERE street = 'Zelena';
+
+CREATE TABLE pharmacy2 
+AS SELECT pharmacy_id, pharmacy_name, phone, email, street, city, state 
+FROM pharmacy WHERE street = 'Lypneva' or street = 'Zelena';
+
+select * from pharmacy1;
+select * from pharmacy2;
+
+select * FROM pharmacy1 UNION select * FROM pharmacy2;
+_______________________________________________________________________
+
+
+2_______________________________________________________________________
+
+SELECT * FROM pharmacy1 WHERE street IN (SELECT street FROM pharmacy2);
+
+_______________________________________________________________________
+
+
+3_______________________________________________________________________
+
+SELECT * FROM pharmacy2 WHERE street NOT IN (SELECT street FROM pharmacy1);
+_______________________________________________________________________
+
+
+
+
+4_______________________________________________________________________
+
+
+SELECT * FROM pharmacy1, pharmacy2;
+
+select pharmacy1.pharmacy_name, pharmacy2.pharmacy_name
+FROM pharmacy1, pharmacy2;
+_______________________________________________________________________
