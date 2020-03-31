@@ -4,19 +4,19 @@ USE pharmacy;
 CREATE TABLE `pharmacy` (
 	`pharmacy_id` INT NOT NULL AUTO_INCREMENT,
 	`pharmacy_name` varchar(200) NOT NULL,
-	`phone` varchar(30) NOT NULL,
-	`email` varchar(50) NOT NULL,
-	`street` varchar(50) NOT NULL,
-	`city` varchar(50) NOT NULL,
-	`state` varchar(50) NOT NULL,
+	`phone` varchar(30),
+	`email` varchar(50),
+	`street` varchar(50),
+	`city` varchar(50),
+	`state` varchar(50),
 	PRIMARY KEY (`pharmacy_id`)
 );
 
 CREATE TABLE `customer` (
-	`customer_id` INT NOT NULL AUTO_INCREMENT,
+	`customer_id` INT AUTO_INCREMENT,
 	`first_name` varchar(40) NOT NULL,
 	`last_name` varchar(40) NOT NULL,
-	`phone` varchar(30) NOT NULL,
+	`phone` varchar(30),
 	`email` varchar(50),
 	`street` varchar(50),
 	`city` varchar(50) DEFAULT "Lviv",
@@ -31,8 +31,8 @@ CREATE TABLE `order` (
 	`order_id` INT NOT NULL,
 	`customer_id` INT NOT NULL UNIQUE,
 	`pharmacy_id` INT UNIQUE,
-	`order_date` DATETIME NOT NULL,
-	`order_status` BINARY NOT NULL,
+	`order_date` DATETIME,
+	`order_status` BINARY,
 	PRIMARY KEY (`order_id`),
     CONSTRAINT `order_fk0` FOREIGN KEY (`customer_id`) REFERENCES `customer`(`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT `order_fk1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy`(`pharmacy_id`) ON DELETE NO ACTION ON UPDATE CASCADE
@@ -82,7 +82,7 @@ CREATE TABLE `delivery_man` (
 	`delivery_id` INT NOT NULL,
 	`first_name` varchar(100) NOT NULL,
 	`last_name` varchar(100) NOT NULL,
-	`phone` varchar(100) NOT NULL,
+	`phone` varchar(100),
 	PRIMARY KEY (`delivery_man_id`),
     CONSTRAINT `delivery_man_fk0` FOREIGN KEY (`delivery_id`) REFERENCES `delivery`(`delivery_id`) ON DELETE NO ACTION ON UPDATE NO ACTION 
 );
