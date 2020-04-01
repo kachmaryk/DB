@@ -3,7 +3,7 @@ INTO TABLE pharmacy
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\AllMedicineTable.csv"
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\AllMedicineTable7.csv"
 INTO TABLE all_medicine
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\r\n';
