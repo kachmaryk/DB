@@ -1,0 +1,84 @@
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\PharmacyTable.csv"
+INTO TABLE pharmacy
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\MedicineCategoryTable.csv"
+INTO TABLE medicine_category
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\AllMedicineTable.csv"
+INTO TABLE all_medicine
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\MedicineTable.csv"
+INTO TABLE medicine
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\CustomerTable.csv"
+INTO TABLE customer
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\OrderTable.csv"
+INTO TABLE `order`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\OrderItemTable.csv"
+INTO TABLE order_item
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+select * from pharmacy;
+select * from all_medicine;
+select * from medicine_category;
+select * from medicine;
+select * from customer;
+select * from `order`;
+select * from order_item;
+
+
+___________________________________________________________________________________________
+1.
+
+
+CREATE FUNCTION myPass_encode(password CHAR(100)) 
+RETURNS BLOB 
+DETERMINISTIC
+RETURN AES_ENCRYPT(password, 'pharmacy_pass'); 
+
+ 
+CREATE FUNCTION myPass_decode(password BLOB) 
+RETURNS CHAR(100)
+DETERMINISTIC 
+RETURN AES_DECRYPT(password, 'pharmacy_pass'); 
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+SELECT first_name, login, myPass_encode(customer.password) AS password 
+FROM customer;
+
+CREATE TABLE customer1 
+AS SELECT customer_id, first_name, login, myPass_encode(customer.password) AS password
+FROM customer;
+
+SELECT * FROM customer1;
+
+SELECT first_name, login, myPass_decode(password) AS password 
+FROM customer1;
+___________________________________________________________________________________________
+
+
+
+___________________________________________________________________________________________
+
+CALL myPhar_count('klloiak', '20190101', '20190401'); 
+
+SELECT * FROM infoOfPharmacy;
+___________________________________________________________________________________________
